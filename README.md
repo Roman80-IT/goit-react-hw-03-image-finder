@@ -155,3 +155,55 @@ npm install source-map-resolve@latest --save-dev
 ```
 npm install svgo@latest --save-dev
 ```
+
+### Підключення нормалайзеру (найоптимальніший варіант)
+
+https://cdnjs.com/libraries/modern-normalize
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css"
+  integrity="sha512-4xo8blKMVCiXpTaLzQSLSw3KFOVPWhm/TRtuPVc4WG6kUgjH6J03IBuG7JZPkcWMxJ5huwaBpOpnwYElP/m6wg=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+```
+
+вставимо код в **index.html**
+
+### Встановимо Styled Components:
+
+`npm install styled-components`
+
+є такі помилки:
+
+```
+npm WARN deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+
+npm WARN deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+```
+
+Оновимо залежності Babel:
+
+```
+npm update @babel/core @babel/preset-env
+```
+
+### axios:
+
+[https://axios-http.com](https://axios-http.com/ru/docs/intro)
+
+Встановлення:
+
+```
+$ npm install axios
+```
+
+### react-loader-spinner
+
+[https://react-loader-spinner](https://github.com/mhnpd/react-loader-spinner)
+
+```
+npm install react-loader-spinner --save
+```
