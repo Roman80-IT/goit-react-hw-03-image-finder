@@ -219,3 +219,8 @@ https://pixabay.com/api/docs/
 ```
 my API key: 38932805-d594196d8ad5a18d00bd574f9
 ```
+
+**Example** Retrieving photos of "yellow flowers". The search term q needs to be
+URL encoded:
+
+https://pixabay.com/api/?key=38932805-d594196d8ad5a18d00bd574f9&q=yellow+flowers&image_type=photo
