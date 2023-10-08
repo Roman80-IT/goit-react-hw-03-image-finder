@@ -203,7 +203,19 @@ $ npm install axios
 ### react-loader-spinner
 
 [https://react-loader-spinner](https://github.com/mhnpd/react-loader-spinner)
+[https://react-loader-spinner/color-ring](https://mhnpd.github.io/react-loader-spinner/docs/components/color-ring)
 
 ```
 npm install react-loader-spinner --save
+```
+
+### pixabay
+
+https://pixabay.com/api/docs/
+[https://pixabay.com/](https://pixabay.com/api/docs/)
+
+Реєстрація: https://pixabay.com/ru/users/u_5xz6tscj6g-38932805/
+
+```
+my API key: 38932805-d594196d8ad5a18d00bd574f9
 ```
