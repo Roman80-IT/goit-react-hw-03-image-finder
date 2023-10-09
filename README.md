@@ -224,3 +224,6 @@ my API key: 38932805-d594196d8ad5a18d00bd574f9
 URL encoded:
 
 https://pixabay.com/api/?key=38932805-d594196d8ad5a18d00bd574f9&q=yellow+flowers&image_type=photo
+
+Для перевірки можна використати АПІ з лекції:
+https://jsonplaceholder.typicode.com/posts
