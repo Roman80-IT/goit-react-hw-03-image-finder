@@ -10,10 +10,17 @@ export class App extends Component {
 
   fetchAllImages = async () => {
     try {
+      this.setState({ isLoading: true });
+
       const images = await fetchImages();
-      console.log(images);
+
+      // console.log(images);
+
       this.setState({ images: images });
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      this.setState({ isLoading: false });
+    }
   };
 
   componentDidMount() {
@@ -27,6 +34,11 @@ export class App extends Component {
     return (
       <>
         <div>
+          {this.state.isLoading && (
+            <div>
+              <p>Loading...</p>
+            </div>
+          )}
           <ul class="gallery">
             {showImg &&
               this.state.images.map(img => {
