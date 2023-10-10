@@ -18,6 +18,7 @@ export class App extends Component {
 
       this.setState({ images: images });
     } catch (error) {
+      this.setState({ error: error.message });
     } finally {
       this.setState({ isLoading: false });
     }
@@ -39,6 +40,7 @@ export class App extends Component {
               <p>Loading...</p>
             </div>
           )}
+          {this.state.error && <p>{this.state.error}</p>}
           <ul class="gallery">
             {showImg &&
               this.state.images.map(img => {

@@ -4,6 +4,10 @@ export const fetchImages = async () => {
   const { data } = await axios.get(
     'https://pixabay.com/api/?key=38932805-d594196d8ad5a18d00bd574f9&q=yellow+flowers&image_type=photo'
   );
+
+  // Симуляція помилки:
+  // throw new Error('Oooops! Something went wrong');
+
   return data.hits;
   // return data;
 };
