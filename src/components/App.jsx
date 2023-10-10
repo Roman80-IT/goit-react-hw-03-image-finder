@@ -12,6 +12,7 @@ export class App extends Component {
     try {
       const images = await fetchImages();
       console.log(images);
+      this.setState({ images: images });
     } catch (error) {}
   };
 
@@ -31,6 +32,15 @@ export class App extends Component {
           color: '#010101',
         }}
       >
+        <ul class="gallery">
+          {this.state.images.map(img => {
+            return (
+              <li class="gallery-item" key={img.id}>
+                <img src={img.pageURL} alt={img.tags} />
+              </li>
+            );
+          })}
+        </ul>
         React homework template
       </div>
     );
