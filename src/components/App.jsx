@@ -21,28 +21,24 @@ export class App extends Component {
   }
 
   render() {
+    const showImg =
+      Array.isArray(this.state.images) && this.state.images.length;
+
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        <ul class="gallery">
-          {this.state.images.map(img => {
-            return (
-              <li class="gallery-item" key={img.id}>
-                <img src={img.pageURL} alt={img.tags} />
-              </li>
-            );
-          })}
-        </ul>
-        React homework template
-      </div>
+      <>
+        <div>
+          <ul class="gallery">
+            {showImg &&
+              this.state.images.map(img => {
+                return (
+                  <li class="gallery-item" key={img.id}>
+                    <img src={img.previewURL} alt={img.tags} />
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+      </>
     );
   }
 }
