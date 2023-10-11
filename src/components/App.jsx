@@ -1,108 +1,100 @@
 import { Component } from 'react';
-import { fetchImages, findImagesByTag } from './services/api';
+// import { fetchImages, findImagesByTag } from './services/api';
+import { PER_PAGE, getImages } from './services/api';
+
+import { Searchbar } from './Searchbar/Searchbar';
+
+import { ImageGallery } from './ImageGallery/ImageGallery';
+
+import { Button } from './Button/Button';
+import { Modal } from './Modal/Modal';
+import { Message } from './Message/Message';
+import { Loader } from './Loader/Loader';
 
 export class App extends Component {
   state = {
-    images: null,
-    isLoading: false,
-    error: null,
-    searchedImages: null,
+    query: '',
+    image: [],
+    totalImage: 0,
+    page: 1,
+    selectedImageUrl: '',
+    load: false,
+    error: false,
   };
 
-  fetchAllImages = async () => {
-    try {
-      this.setState({ isLoading: true });
-
-      const images = await fetchImages();
-
-      // console.log(images);
-
-      this.setState({ images: images });
-    } catch (error) {
-      this.setState({ error: error.message });
-    } finally {
-      this.setState({ isLoading: false });
-    }
-  };
-
-  // Метод для запиту:
-  fetchImagesByQuery = async () => {
-    try {
-      this.setState({ isLoading: true });
-
-      const imagesShow = await findImagesByTag(this.state.searchedImages);
-
-      this.setState({ images: imagesShow });
-    } catch (error) {
-      this.setState({ error: error.message });
-    } finally {
-      this.setState({ isLoading: false });
-    }
-  };
-
-  componentDidMount() {
-    this.fetchAllImages();
-  }
-
-  componentDidUpdate(_, prevState) {
-    if (prevState.searchedImages !== this.state.searchedImages) {
-      this.fetchImagesByQuery();
+  async componentDidUpdate(_, prevState) {
+    if (
+      prevState.query !== this.state.query ||
+      prevState.page !== this.state.page
+    ) {
+      try {
+        this.setState({ load: true, error: false });
+        const responce = await getImages(this.state.query, this.state.page);
+        this.setState({
+          image: [...this.state.image, ...responce.data.hits],
+          totalImage: responce.data.totalHits,
+        });
+      } catch {
+        this.setState({ error: true });
+      } finally {
+        this.setState({ load: false });
+      }
     }
   }
 
-  handleSearchSubmit = event => {
-    event.preventDefault();
+  getQuery = e => {
+    e.preventDefault();
+    this.setState({
+      query: `${Date.now()}/${e.target.elements.query.value}`,
+      page: 1,
+      image: [],
+      totalImage: 0,
+    });
+  };
 
-    const searchedImages = event.currentTarget.elements.searchImg.value;
-    // console.log('searchedImages: ', searchedImages);
+  onBtnClick = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
 
-    this.setState({ searchedImages: searchedImages });
+  getImageForModal = url => {
+    this.setState({ selectedImageUrl: url });
+  };
 
-    // Очищення поля введення форми:
-    event.currentTarget.reset();
+  onModalClose = () => {
+    this.setState({ selectedImageUrl: '' });
   };
 
   render() {
-    const showImg =
-      Array.isArray(this.state.images) && this.state.images.length;
-
     return (
       <>
-        <header class="searchbar">
-          <form class="form" onSubmit={this.handleSearchSubmit}>
-            <button type="submit" class="button">
-              <span class="button-label">Search</span>
-            </button>
+        <Searchbar onSubmit={this.getQuery}></Searchbar>
+        {this.state.image.length !== 0 && (
+          <ImageGallery
+            image={this.state.image}
+            onImageClick={this.getImageForModal}
+          ></ImageGallery>
+        )}
 
-            <input
-              class="input"
-              type="text"
-              name="searchImg"
-              autocomplete="off"
-              autofocus
-              placeholder="Search images and photos"
-            />
-          </form>
-        </header>
+        {this.state.load && <Loader></Loader>}
 
-        <div>
-          {this.state.isLoading && (
-            <div>
-              <p>Loading...</p>
-            </div>
+        {this.state.image.length !== 0 &&
+          this.state.totalImage > PER_PAGE * this.state.page && (
+            <Button onClick={this.onBtnClick}></Button>
           )}
-          {this.state.error && <p>{this.state.error}</p>}
-          <ul class="gallery">
-            {showImg &&
-              this.state.images.map(img => {
-                return (
-                  <li class="gallery-item" key={img.id}>
-                    <img src={img.previewURL} alt={img.tags} />
-                  </li>
-                );
-              })}
-          </ul>
-        </div>
+
+        <Message
+          error={this.state.error}
+          empty={
+            this.state.image.length === 0 &&
+            this.state.query !== '' &&
+            !this.state.load
+          }
+        ></Message>
+        <Modal
+          url={this.state.selectedImageUrl}
+          query={this.state.query}
+          onModalClose={this.onModalClose}
+        ></Modal>
       </>
     );
   }
