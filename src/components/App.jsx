@@ -26,7 +26,6 @@ export class App extends Component {
   };
 
   // Метод для запиту:
-
   fetchImagesByQuery = async () => {
     try {
       this.setState({ isLoading: true });
@@ -43,6 +42,12 @@ export class App extends Component {
 
   componentDidMount() {
     this.fetchAllImages();
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.searchedImages !== this.state.searchedImages) {
+      this.fetchImagesByQuery();
+    }
   }
 
   handleSearchSubmit = event => {
