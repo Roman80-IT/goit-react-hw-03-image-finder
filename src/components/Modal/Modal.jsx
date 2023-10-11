@@ -1,4 +1,5 @@
 import ReactModal from 'react-modal';
+import { Image } from './Modal.styled';
 
 export const Modal = ({ url, onModalClose, query }) => {
   return (
@@ -24,7 +25,7 @@ export const Modal = ({ url, onModalClose, query }) => {
         },
       }}
     >
-      <img src={url} alt={query}></img>
+      <Image src={url} alt={query}></Image>
     </ReactModal>
   );
 };

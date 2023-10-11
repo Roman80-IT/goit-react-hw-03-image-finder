@@ -1,12 +1,12 @@
 import { Component } from 'react';
-// import { fetchImages, findImagesByTag } from './services/api';
+
 import { PER_PAGE, getImages } from './services/api';
 
-import { Searchbar } from './Searchbar/Searchbar';
-
+import { GlobalStyle } from './GlobalStyle';
 import { ImageGallery } from './ImageGallery/ImageGallery';
-
+import { Searchbar } from './Searchbar/Searchbar';
 import { Button } from './Button/Button';
+import { Layout } from './Layout/Layout.styled';
 import { Modal } from './Modal/Modal';
 import { Message } from './Message/Message';
 import { Loader } from './Loader/Loader';
@@ -66,7 +66,7 @@ export class App extends Component {
 
   render() {
     return (
-      <>
+      <Layout>
         <Searchbar onSubmit={this.getQuery}></Searchbar>
         {this.state.image.length !== 0 && (
           <ImageGallery
@@ -95,7 +95,8 @@ export class App extends Component {
           query={this.state.query}
           onModalClose={this.onModalClose}
         ></Modal>
-      </>
+        <GlobalStyle></GlobalStyle>
+      </Layout>
     );
   }
 }

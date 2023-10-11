@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
 
+import { Image } from './ImageGalleryItem.styled';
+
 export const ImageGalleryItem = ({
   largeImageURL,
   webformatURL,
@@ -11,7 +13,7 @@ export const ImageGalleryItem = ({
       onClick={() => onImageClick(largeImageURL)}
       whileHover={{ scale: 1.02 }}
     >
-      <img src={webformatURL} alt={tags} />
+      <Image src={webformatURL} alt={tags} />
     </motion.li>
   );
 };

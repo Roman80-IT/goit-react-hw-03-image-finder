@@ -1,6 +1,8 @@
+import { Text } from './Message.styled';
+
 export const Message = ({ error, empty }) => {
   if (!error && !empty) return;
-  return <p>{getMessageText({ error, empty })}</p>;
+  return <Text>{getMessageText({ error, empty })}</Text>;
 };
 
 function getMessageText({ error, empty }) {

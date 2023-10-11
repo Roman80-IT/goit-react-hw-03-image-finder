@@ -1,24 +1,21 @@
 import { TbPhotoSearch } from 'react-icons/tb';
+import { Bar, Btn, Form, Input } from './Searchbar.styled';
 
 export const Searchbar = ({ onSubmit }) => {
   return (
-    <header class="searchbar">
-      <form class="form" onSubmit={e => onSubmit(e)}>
-        <button type="submit" class="button">
-          <span class="button-label">
-            Search <TbPhotoSearch size="20" />
-          </span>
-        </button>
-
-        <input
-          class="input"
+    <Bar>
+      <Form onSubmit={e => onSubmit(e)}>
+        <Input
           type="text"
-          name="searchImg"
-          autocomplete="off"
-          autofocus
+          name="query"
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+        <Btn>
+          <TbPhotoSearch size="20" />
+        </Btn>
+      </Form>
+    </Bar>
   );
 };
