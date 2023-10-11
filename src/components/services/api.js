@@ -8,25 +8,8 @@ export async function getImages(query, page) {
   const separatorIndex = query.indexOf('/');
   const parcedQuery = query.slice(separatorIndex + 1, query.length);
 
-  //   return await axios.get(
-  //     `${BASE_URL}?key=${API_KEY}&q=${parcedQuery}&per_page=${PER_PAGE}&page=${page}`
-  //   );
-  // }
-
-  //////////////////////
   const data = await axios.get(
     `${BASE_URL}?key=${API_KEY}&q=${parcedQuery}&per_page=${PER_PAGE}&page=${page}`
   );
   return data;
 }
-
-////////////////////////
-// export const getImages = async (query, page) => {
-//   const separatorIndex = query.indexOf('/');
-//   const parcedQuery = query.slice(separatorIndex + 1, query.length);
-
-//   const { data } = await axios.get(
-//     `${BASE_URL}?key=${API_KEY}&q=${parcedQuery}&per_page=${PER_PAGE}&page=${page}`
-//   );
-//   return data;
-// };

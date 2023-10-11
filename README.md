@@ -227,3 +227,7 @@ https://pixabay.com/api/?key=38932805-d594196d8ad5a18d00bd574f9&q=yellow+flowers
 
 Для перевірки можна використати АПІ з лекції:
 https://jsonplaceholder.typicode.com/posts
+
+- $ npm install react-icons --save
+- $ npm install --save react-modal
+- $ npm install framer-motion
