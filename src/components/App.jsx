@@ -1,11 +1,12 @@
 import { Component } from 'react';
-import { fetchImages } from './services/api';
+import { fetchImages, findImagesByTag } from './services/api';
 
 export class App extends Component {
   state = {
     images: null,
     isLoading: false,
     error: null,
+    searchedImages: null,
   };
 
   fetchAllImages = async () => {
@@ -24,9 +25,37 @@ export class App extends Component {
     }
   };
 
+  // Метод для запиту:
+
+  fetchImagesByQuery = async () => {
+    try {
+      this.setState({ isLoading: true });
+
+      const imagesShow = await findImagesByTag(this.state.searchedImages);
+
+      this.setState({ images: imagesShow });
+    } catch (error) {
+      this.setState({ error: error.message });
+    } finally {
+      this.setState({ isLoading: false });
+    }
+  };
+
   componentDidMount() {
     this.fetchAllImages();
   }
+
+  handleSearchSubmit = event => {
+    event.preventDefault();
+
+    const searchedImages = event.currentTarget.elements.searchImg.value;
+    // console.log('searchedImages: ', searchedImages);
+
+    this.setState({ searchedImages: searchedImages });
+
+    // Очищення поля введення форми:
+    event.currentTarget.reset();
+  };
 
   render() {
     const showImg =
@@ -34,6 +63,23 @@ export class App extends Component {
 
     return (
       <>
+        <header class="searchbar">
+          <form class="form" onSubmit={this.handleSearchSubmit}>
+            <button type="submit" class="button">
+              <span class="button-label">Search</span>
+            </button>
+
+            <input
+              class="input"
+              type="text"
+              name="searchImg"
+              autocomplete="off"
+              autofocus
+              placeholder="Search images and photos"
+            />
+          </form>
+        </header>
+
         <div>
           {this.state.isLoading && (
             <div>
