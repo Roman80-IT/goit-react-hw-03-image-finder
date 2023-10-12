@@ -74,12 +74,16 @@ export class App extends Component {
 
   getQuery = e => {
     e.preventDefault();
+
+    const searchedImages = e.currentTarget.elements.query.value;
+
     this.setState({
-      query: `${Date.now()}/${e.target.elements.query.value}`,
+      query: `${Date.now()}/${searchedImages}`,
       page: 1,
       image: [],
       totalImage: 0,
     });
+    e.currentTarget.reset();
   };
 
   onBtnClick = () => {
