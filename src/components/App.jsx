@@ -23,26 +23,6 @@ export class App extends Component {
     loadMore: true,
   };
 
-  // async componentDidUpdate(_, prevState) {
-  //   if (
-  //     prevState.query !== this.state.query ||
-  //     prevState.page !== this.state.page
-  //   ) {
-  //     try {
-  //       this.setState({ load: true, error: false });
-  //       const responce = await getImages(this.state.query, this.state.page);
-  //       this.setState({
-  //         image: [...this.state.image, ...responce.data.hits],
-  //         totalImage: responce.data.totalHits,
-  //       });
-  //     } catch {
-  //       this.setState({ error: true });
-  //     } finally {
-  //       this.setState({ load: false });
-  //     }
-  //   }
-  // }
-
   componentDidUpdate(_, prevState) {
     if (
       prevState.query !== this.state.query ||
@@ -111,10 +91,14 @@ export class App extends Component {
 
         {this.state.load && <Loader></Loader>}
 
-        {this.state.image.length !== 0 &&
+        {/* {this.state.image.length !== 0 &&
           this.state.totalImage > PER_PAGE * this.state.page && (
             <Button onClick={this.onBtnClick}></Button>
-          )}
+          )} */}
+
+        {this.state.image.length !== 0 && this.state.loadMore && (
+          <Button onClick={this.onBtnClick}></Button>
+        )}
 
         <Message
           error={this.state.error}
