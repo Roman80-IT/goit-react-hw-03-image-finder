@@ -79,10 +79,12 @@ export class App extends Component {
   };
 
   render() {
+    const showImg = Array.isArray(this.state.image) && this.state.image.length;
+
     return (
       <Layout>
         <Searchbar onSubmit={this.getQuery}></Searchbar>
-        {this.state.image.length !== 0 && (
+        {showImg && (
           <ImageGallery
             image={this.state.image}
             onImageClick={this.getImageForModal}
