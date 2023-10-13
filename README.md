@@ -190,6 +190,10 @@ npm WARN deprecated @babel/plugin-proposal-object-rest-spread@7.20.7: This propo
 npm update @babel/core @babel/preset-env
 ```
 
+```
+npm install --save-dev @babel/plugin-transform-private-property-in-object
+```
+
 ### axios:
 
 [https://axios-http.com](https://axios-http.com/ru/docs/intro)
