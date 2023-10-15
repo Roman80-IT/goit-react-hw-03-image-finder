@@ -4,7 +4,7 @@ import { Bar, Btn, Form, Input } from './Searchbar.styled';
 export const Searchbar = ({ onSubmit }) => {
   return (
     <Bar>
-      <Form onSubmit={e => onSubmit(e)}>
+      <Form onSubmit={onSubmit}>
         <Input
           type="text"
           name="query"

@@ -80,14 +80,6 @@ export class App extends Component {
 
   render() {
     const showImg = Array.isArray(this.state.image) && this.state.image.length;
-    // const queryIsNull = this.state.query === null;
-    // const imageIsNull = this.state.image === null;
-
-    // if (queryIsNull || imageIsNull) {
-    //   return null; // або повернути якийсь інший заглушковий контент
-    // }
-
-    // if (this.state.query === null || this.state.image === null)
 
     return (
       <Layout>
