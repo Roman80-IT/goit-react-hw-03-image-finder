@@ -55,20 +55,6 @@ export class App extends Component {
     }
   };
 
-  // getQuery = e => {
-  //   e.preventDefault();
-
-  //   const searchedImages = e.currentTarget.elements.query.value;
-  //   console.log(searchedImages);
-  //   this.setState({
-  //     query: `${Date.now()}/${searchedImages}`,
-  //     page: 1,
-  //     image: [],
-  //     totalImage: 0,
-  //   });
-  //   e.currentTarget.reset();
-  // };
-
   getQuery = q => {
     this.setState({
       query: `${Date.now()}/${q}`,

@@ -28,25 +28,3 @@ export const Searchbar = ({ onSubmit }) => {
     </Bar>
   );
 };
-
-// export const Searchbar = ({ onSubmit }) => {
-//   const handleSearchSubmit = event => {
-//     event.preventDefault();
-
-//     const searchedWord = event.currentTarget.elements.searchPostId.value;
-//     this.setState({
-//       query: searchedWord,
-//     });
-
-//     event.currentTarget.reset();
-//   };
-
-// const handleSubmit = (value, actions) => {
-//   onSubmit(value.title);
-//   actions.resetForm();
-// };
-/////////////////////////
-
-// state = {
-//   query: '',
-// };
