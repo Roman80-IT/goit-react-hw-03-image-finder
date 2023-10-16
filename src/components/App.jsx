@@ -38,6 +38,9 @@ export class App extends Component {
 
       const response = await getImages(this.state.query, this.state.page);
 
+      // Вивести вміст відповіді на консоль
+      console.log('Вміст відповіді:', response.data);
+
       this.setState(prevState => ({
         image: [...prevState.image, ...response.data.hits],
         totalImage: response.data.totalHits,
@@ -52,18 +55,27 @@ export class App extends Component {
     }
   };
 
-  getQuery = e => {
-    e.preventDefault();
+  // getQuery = e => {
+  //   e.preventDefault();
 
-    const searchedImages = e.currentTarget.elements.query.value;
+  //   const searchedImages = e.currentTarget.elements.query.value;
+  //   console.log(searchedImages);
+  //   this.setState({
+  //     query: `${Date.now()}/${searchedImages}`,
+  //     page: 1,
+  //     image: [],
+  //     totalImage: 0,
+  //   });
+  //   e.currentTarget.reset();
+  // };
 
+  getQuery = q => {
     this.setState({
-      query: `${Date.now()}/${searchedImages}`,
+      query: `${Date.now()}/${q}`,
       page: 1,
       image: [],
       totalImage: 0,
     });
-    e.currentTarget.reset();
   };
 
   onBtnClick = () => {
